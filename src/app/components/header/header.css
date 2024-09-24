@@ -1,0 +1,61 @@
+.header {
+    background-color: rgb(0, 0, 0);
+    background:linear-gradient( #1d1d1d,#000000 );
+    font-size: 2.5vh;
+    padding: 2vh;
+    display: flex;
+    /* justify-content: center; */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.19);
+    height: 10%;
+  }
+
+.header-link {
+    font-size: 2.5vh;
+    padding: 2vh;
+    display: flex;
+}
+
+.header-yes {
+    margin-left: 2vh;
+    padding-top: 1vh; padding-bottom: 1vh; padding-left: 1vh;
+    color: #FDC602;
+    /* display: flex; */
+}
+.header-bank {
+    margin-right: 2vh;
+    padding-top: 1vh; padding-bottom: 1vh; padding-right: 1vh;
+    color: #ffffff;
+    /* display: flex; */
+}
+
+.header-items {
+    margin-left: 2vh;
+    margin-right: 2vh;
+    padding: 1vh;
+    border: 1px;
+    border-radius: 10%;
+    border-color: rgb(203, 203, 203);
+    color: rgb(119, 119, 119);
+    display: flex;
+}
+
+.header-icone {
+    margin-left: 2vh;
+    margin-right: 2vh;
+    padding: 1vh;
+    border: 1px;
+    border-radius: 10%;
+    border-color: rgb(203, 203, 203);
+    color: rgb(119, 119, 119);
+    display: flex;
+}
+
+.header-user-name {
+    margin-left: 98vh;
+    padding: 1vh;
+    border: 1px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+}

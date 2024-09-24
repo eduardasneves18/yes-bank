@@ -1,0 +1,15 @@
+.base {
+    min-height: 100svh;
+    color: rgb(255, 255, 255);
+    background:linear-gradient( #0F0F0F,#7C7C7C );
+    padding:2vh;
+  }
+
+.border-components {
+  padding: 1vh;
+  border: 1px;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000;
+}

@@ -1,0 +1,24 @@
+ul {
+    list-style-type: none;
+}
+
+.lateral-diminuido {
+    width: 25vh;
+    height: 70vh;
+}
+
+.lateral-inteiro {
+    width: 25vh;
+    height: 98vh;
+}
+
+.itens-menu-lateral{
+    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+}
