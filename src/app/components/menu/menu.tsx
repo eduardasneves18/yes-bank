@@ -1,42 +1,25 @@
 import "./menu.css";
 import Link from "next/link";
 
-interface MenuProps{
-    type: number; // 1 => menu lateral inteiro | 2 => menu lateral diminuido
-}
-
-
 function MenuItens() {
     return(
-        
         <ul className= "itens-menu-lateral">
-            <li><Link className= "item" href='/pages/home'>Inicio</Link></li>
+            <li><Link className= "item" href='/pages/home'>Página inicial</Link></li>
             <hr />
-            <li><Link className= "item" href='/pages/statement'>Extrato</Link></li>
+            <li><Link className= "item" href='/pages/statement'>Extrato Detalhado</Link></li>
             <hr />
             <li><Link className= "item" href='/pages/home'>Cartões</Link></li>
             <hr />
-            <li><Link className= "item" href='/pages/home'>Transações</Link></li>
+            <li><Link className= "item" href='/pages/transaction'>Nova Transação</Link></li>
             <hr />
             <li><Link className= "item" href='/pages/home'>Todos os serviços</Link></li>
-
         </ul>  
     );
 }
-export default function Menu(props: MenuProps) {
-    
-    if(props.type === 1) {
-        return(
-            <div className="border-components lateral-diminuido">
-                <MenuItens></MenuItens> 
-            </div>
-        );
-    } else {
-        return(
-            <div className="border-components lateral-inteiro">
-                <MenuItens></MenuItens> 
-            </div>
-        );
-    };
-
+export default function Menu() {
+    return(
+        <div className="lateral-diminuido">
+            <MenuItens></MenuItens> 
+        </div>
+    );
 }
