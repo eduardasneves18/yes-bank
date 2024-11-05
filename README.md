@@ -32,7 +32,7 @@ git clone https://github.com/eduardasneves18/yes-bank.git
 
 Navegue até a pasta do projeto:
 ```bash
-npm installcd yes-bank
+cd yes-bank
 ```
 
 Instale as dependências:
