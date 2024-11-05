@@ -15,7 +15,7 @@ input{
     border-width: 1px;
     border-style: solid;
     border-color: #0a0a0a;
-    border-radius: 15px;
+    border-radius: 5px;
     background-color: transparent;
     height: 3vh;
 }
@@ -30,7 +30,7 @@ input::placeholder {
     border-width: 1px;
     border-style: solid;
     border-color: #0a0a0a;
-    border-radius: 15px;
+    border-radius: 5px;
     background-color: transparent;
     height: 3.8vh;
 }
