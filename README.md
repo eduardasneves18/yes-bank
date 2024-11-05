@@ -1,7 +1,7 @@
-#Yes-Bank
+# Yes-Bank
 Yes-Bank é um aplicativo bancário simulado desenvolvido em Next.js, onde os usuários podem visualizar suas contas bancárias, realizar transações e consultar o extrato de suas operações. O sistema foi projetado para simular uma experiência de banco online, com foco em simplicidade e funcionalidades essenciais para o gerenciamento de contas e transações.
 
-##Funcionalidades
+## Funcionalidades
 Visualização de Conta Bancária: O usuário pode verificar o saldo atual de sua conta bancária.
 Transações: O usuário pode realizar transferências para outras contas.
 Extrato Bancário: O usuário pode consultar o histórico de suas transações realizadas.
@@ -15,26 +15,25 @@ Antes de rodar o projeto localmente, é necessário ter o Node.js e o npm instal
 
 https://nodejs.org/pt
 
-##Instalação
+## Instalação
 Execute os seguintes comandos:
 
-1) Clone o repositório do projeto:
+Clone o repositório do projeto:
 ```bash
 git clone https://github.com/eduardasneves18/yes-bank.git
 ```
 
-2) Navegue até a pasta do projeto:
+Navegue até a pasta do projeto:
 ```bash
 npm installcd yes-bank
 ```
 
-
-3) Instale as dependências:
+Instale as dependências:
 ```bash
 npm install
 ```
 
-4) Inicie o servidor de desenvolvimento:
+Inicie o servidor de desenvolvimento:
 ```bash
 npm run dev
 ```
