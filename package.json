@@ -6,17 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type": "module"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@reduxjs/toolkit": "^2.5.0",
+    "formidable": "^3.5.2",
+    "fs": "^0.0.1-security",
     "loadsh": "^0.0.4",
     "lodash": "^4.17.21",
     "next": "14.2.13",
     "nvm": "^0.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   },

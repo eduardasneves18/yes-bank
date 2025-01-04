@@ -1,4 +1,4 @@
-export async function createTransactionAPI(transaction: { amount: number; type: string; description: string }) {
+export async function createTransactionAPI(transaction: { amount: number; type: string; description: string, dateTransaction: Date, file: string }) {
     try {
       const response = await fetch('http://localhost:3000/api/transactions', {
         method: 'POST',
@@ -18,7 +18,8 @@ export async function createTransactionAPI(transaction: { amount: number; type: 
       console.error('Failed to create transaction:', error);
     }
   }
-  export async function getTransactionsAPI(id?: number) {
+
+export async function getTransactionsAPI(id?: number) {
     try {
         const url = id ? `http://localhost:3000/api/transactions?id=${id}` : 'http://localhost:3000/api/transactions';
         

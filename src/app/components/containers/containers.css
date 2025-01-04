@@ -27,7 +27,7 @@
 
 .grid-fields{
     display: grid;
-    grid-template-columns: 49% 49%;
+    grid-template-columns: 31% 31% 31%;
     gap: 2%;
     justify-content: center;
 }
@@ -35,7 +35,7 @@
 .fields-gap {
     gap: 3%;
     display: grid;
-    grid-template-rows: 15% 82%;
+    grid-template-rows: 15% 15% 64%;
     height: 100%;
 }
 
@@ -84,4 +84,9 @@
 .error-message {
     color: red;
     margin-top: 8px;
+}
+
+.header-extrato {
+    display: flex;
+    flex-direction: row.633 ;
 }

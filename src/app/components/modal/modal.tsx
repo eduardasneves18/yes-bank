@@ -5,8 +5,9 @@ interface ModalProps {
     isOpen: boolean;
     message: string;
     onClose: () => void;
-    type: 'success' | 'error';
+    type: string;
 }
+
 
 const Modal: React.FC<ModalProps> = ({ isOpen, message, onClose, type }) => {
     if (!isOpen) return null;
@@ -23,4 +24,4 @@ const Modal: React.FC<ModalProps> = ({ isOpen, message, onClose, type }) => {
     );
 };
 
-export default Modal;
+export  {Modal};

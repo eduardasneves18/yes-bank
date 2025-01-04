@@ -9,22 +9,35 @@ const dbPromise = open({
 
 export const revalidate = 60;
 
-async function initializeDatabase() {
-const db = await dbPromise;
-await db.exec(`
+export async function initializeDatabase() {
+  const db = await dbPromise;
+  await db.exec(`
     CREATE TABLE IF NOT EXISTS transactions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    amount REAL NOT NULL,
-    type TEXT NOT NULL,
-    description TEXT
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      amount REAL NOT NULL,
+      type TEXT NOT NULL,
+      description TEXT,
+      dateTranscription TEXT NOT NULL,
+      file TEXT
     )
 `);
 }
 
-export async function createTransaction(transaction: { amount: number; type: string; description: string }) {
+export async function createTransaction(transaction: {  amount: number; 
+                                                        type: string; 
+                                                        description: string; 
+                                                        dateTransaction?: string;
+                                                        file?: string; 
+                                                      }) {
+  
   const db = await dbPromise;
-  const { amount, type, description } = transaction;
-  await db.run('INSERT INTO transactions (amount, type, description) VALUES (?, ?, ?)', [amount, type, description]);
+  const { amount, type, description, dateTransaction, file } = transaction;
+  const transactionDate = dateTransaction || new Date().toISOString(); 
+
+  await db.run(
+      'INSERT INTO transactions (amount, type, description, dateTransaction, file) VALUES (?, ?, ?, ?, ?)', 
+      [amount, type, description, transactionDate, file || null]
+  );
 }
 
 export async function getTransactions() {
@@ -88,3 +101,4 @@ export async function DELETE(req: Request) {
 
   return new Response(JSON.stringify('Transaction deleted'), { status: 200 });
 }
+

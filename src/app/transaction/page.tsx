@@ -1,6 +1,6 @@
 import Container from "@/app/components/containers/containers";
 import '@/app/globals.css';
-import '@/app/pages/home/home.css';
+import '@/app/home/home.css';
 import './transaction.css'
 
 export default function Transaction() {

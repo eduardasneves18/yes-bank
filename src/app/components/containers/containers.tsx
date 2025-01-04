@@ -3,10 +3,14 @@
 import { useEffect, useState } from "react";
 import Menu from "../menu/menu";
 import "./containers.css";
-import { LookupField, TextField, NumberField } from "@/app/components/fields/fields";
-import { InsertTransactionButton, EditTransactionScreen, DeleteTransaction } from "../buttons/buttons";
+import { LookupField, TextField, NumberField, DateField, AttachmentField, PasswordField, EmailField } from "@/app/components/fields/fields";
+import { InsertTransactionButton, EditTransactionScreen, DeleteTransaction, FilterIcon, Login } from "../buttons/buttons";
 import { createTransactionAPI, getTransactionsAPI, deleteTransactionsAPI } from '@/app/services/transaction';
-import Modal from "../modal/modal";
+import { Modal } from "../modal/modal";
+
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import { setTransaction, updateTransaction } from "@/app/store/transactionSlice";
 
 interface containerProps {
     type: string;
@@ -17,13 +21,28 @@ function ContainerType(typeBox: string, className: string) {
     const [description, setDescription] = useState<string>("");
     const [amount, setAmount] = useState<number>(0);
     const [type, setType] = useState<string>("PIX");
+    const [dateTransaction, setDate] = useState<Date>(new Date);
+    const [file, setFile] = useState<string>("");
     const [transactions, setTransactions] = useState<any[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
     const [successMessage, setSuccessMessage] = useState<string>("");
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+    // Redux
+    const dispatch = useDispatch();
+    const transaction = useSelector((state) => state.transaction);
+
+
     const onChangeDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDescription(event.target.value);
+        const value = event.target.value;
+        setDescription(value);
+        dispatch(updateTransaction({
+            description: value,
+            data: null,
+            type: null,
+            value: null,
+            file: null
+        }));
     };
 
     const onChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,6 +53,14 @@ function ContainerType(typeBox: string, className: string) {
         setType(event.target.value);
     };
 
+    const onChangeDate = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setDate(event.target);
+    };
+
+    const onChangeFile = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setFile(event.target.value);
+    };
+
     const fetchTransactions = async () => {
         const data = await getTransactionsAPI();
         if (data) {
@@ -41,7 +68,8 @@ function ContainerType(typeBox: string, className: string) {
         }
     };
 
-    const insertTransaction = async (amount: number, type: string, description: string) => {
+    const insertTransaction = async (amount: number, type: string, description: string, dateTrasaction: Date, file: string) => {
+
         if (!description || amount <= 0 || !type) {
             setErrorMessage("Todos os campos devem ser preenchidos corretamente.");
             setIsModalOpen(true);
@@ -52,7 +80,7 @@ function ContainerType(typeBox: string, className: string) {
         try {
             setErrorMessage("");
             setSuccessMessage("");
-            await createTransactionAPI({ amount, type, description });
+            await createTransactionAPI({ amount, type, description, dateTransaction, file });
             fetchTransactions();
             setSuccessMessage("Transação realizada com sucesso!");
             setIsModalOpen(true);
@@ -108,44 +136,69 @@ function ContainerType(typeBox: string, className: string) {
             return (
                 <div className={`container ${className}`}>
                     <h2>Nova transação</h2>
-                    <div className="fields-gap">
-                        <TextField
-                            id="destinatario"
-                            className="text-field"
-                            labelDescription="Destinatário"
-                            placeholderText="Insira o nome do destinatário"
-                            value={description}
-                            onChange={onChangeDescription}
-                        />
-                        <div className="transaction-gap">
-                            <div className="grid-fields">
-                                <NumberField
-                                    id="valor"
-                                    className="number-field"
-                                    labelDescription="Valor"
-                                    placeholderText="00,00"
-                                    value={amount}
-                                    onChange={onChangeValue}
-                                />
-                                <LookupField
-                                    id="tipo-transacao"
-                                    className="lookup-field"
-                                    labelDescription="Tipo de transação"
-                                    options={["PIX", "TED"]}
-                                    placeholderText="Selecione o tipo de transação"
-                                    value={type}
-                                    onChange={onChangeTransactionType}
-                                />
-                            </div>
-                            <div>
-                                <InsertTransactionButton
-                                    className="insert-transaction"
-                                    title="Fazer transação"
-                                    action={() => insertTransaction(amount, type, description)}
-                                />
+                        <div className="fields-gap">
+                            <AttachmentField 
+                                id={"anexo"} 
+                                labelDescription={"Anexar comprovante"}
+                                className="text-field"
+                                placeholderText="Insira o nome do destinatário"
+                                value={description}
+                                onChange={onChangeFile}/>
+                            
+                            <TextField
+                                id="destinatario"
+                                className="text-field"
+                                labelDescription="Nome da transação"
+                                placeholderText="Insira o nome do destinatário"
+                                value={description}
+                                onChange={onChangeDescription}
+                            />
+                            <div className="transaction-gap">
+                                <div className="grid-fields">
+                                    {/* <LookupField
+                                        id="tipo-transacao"
+                                        className="lookup-field"
+                                        labelDescription="Tipo de transação"
+                                        options={["Entrada", "Saída"]}
+                                        placeholderText="Selecione o tipo de transação"
+                                        value={type}
+                                        onChange={onChangeTransactionType}
+                                    /> */}
+                                    <LookupField
+                                        id="tipo-transacao"
+                                        className="lookup-field"
+                                        labelDescription="Tipo de transação"
+                                        options={["PIX", "TED"]}
+                                        placeholderText="Selecione o tipo de transação"
+                                        value={type}
+                                        onChange={onChangeTransactionType}
+                                    />
+                                    <DateField 
+                                        id={"data-transacao"} 
+                                        labelDescription={"Data da transação"}
+                                        className="number-field"
+                                        placeholderText="00,00"
+                                        value={amount}
+                                        onChange={onChangeDate}
+                                    />
+                                    <NumberField
+                                        id="valor"
+                                        className="number-field"
+                                        labelDescription="Valor"
+                                        placeholderText="00,00"
+                                        value={amount}
+                                        onChange={onChangeValue}
+                                    />
+                                </div>
+                                <div>
+                                    <InsertTransactionButton
+                                        className="insert-transaction"
+                                        title="Fazer transação"
+                                        action={() => insertTransaction(amount, type, description, dateTransaction, file)}
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <Modal
                         isOpen={isModalOpen}
                         message={errorMessage || successMessage}
@@ -157,7 +210,10 @@ function ContainerType(typeBox: string, className: string) {
         case 'extrato-detalhado':
             return (
                 <div className="container border-gradient">
-                    <h2>Extrato</h2>
+                    <div className="header-extrato">
+                        <h2>Extrato</h2>
+                        <FilterIcon/>
+                    </div>
                     <hr />
                     <div className={className}>
                         {transactions.length > 0 ? (
@@ -255,6 +311,27 @@ function ContainerType(typeBox: string, className: string) {
                     />
                 </div>
             );
+        case 'login':
+            return (
+                <div className= {className}>
+                    <form>
+                        <TextField id={"nm-usuario"} labelDescription={"Nome de usuário"}></TextField>
+                        <PasswordField id={"pswd-usuario"} labelDescription={"Nome de usuário"}></PasswordField>
+                        <Login className="login"></Login>
+                    </form>
+                </div>
+            );
+            case 'register':
+                return (
+                    <div className="login">
+                        <form>
+                            <TextField id={"nm-usuario"} labelDescription={"Nome de usuário"}></TextField>
+                            <PasswordField id={"pswd-usuario"} labelDescription={"Nome de usuário"}></PasswordField>
+                            <EmailField id={"email-usuario"} labelDescription={"Nome de usuário"}></EmailField>
+                            <Login className="login"></Login>
+                        </form>
+                    </div>
+                );
         default:
             return null;
     }

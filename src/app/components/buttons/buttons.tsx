@@ -3,7 +3,8 @@ import React, { MouseEventHandler, useEffect, useState } from 'react';
 import { updateTransactionsAPI, deleteTransactionsAPI } from '@/app/services/transaction';
 import { LookupField, NumberField, TextField } from "../fields/fields";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
-import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPen, faFileAlt, faFilter } from '@fortawesome/free-solid-svg-icons';
+import { AttachmentModal } from "../modal/modal";
 
 type Transaction = {
     id: number;
@@ -113,12 +114,14 @@ const EditTransactionScreen: React.FC<EditTransactionProps> = ({ className, tran
     );
 };
 
+// eslint-disable-next-line react-hooks/rules-of-hooks
+
 const DeleteTransaction: React.FC<{ className?: string; transaction: Transaction; onDelete: () => void; }> = ({ className, transaction, onDelete }) => {
     const handleDelete = async () => {
         await deleteTransactionsAPI(transaction.id);
         onDelete();
     };
-
+    
     return (
         <div className={className}>
             <button 
@@ -130,5 +133,41 @@ const DeleteTransaction: React.FC<{ className?: string; transaction: Transaction
     );
 };
 
-export { InsertTransactionButton, EditTransactionScreen, DeleteTransaction };
+
+const FilterIcon:  React.FC<{ className?: string;}> = ({ className }) => {
+
+    return (
+        <div className={className}>
+            <button 
+                className="icon-button">
+                <FontAwesomeIcon icon={faFilter} />
+            </button>
+        </div>
+    );
+};
+
+const FilterRegisters:  React.FC<{ className?: string;}> = ({ className }) => {
+
+    return (
+        <div className={className}>
+            <button 
+                className="icon-button">
+                <FontAwesomeIcon icon={faFileAlt} />
+            </button>
+        </div>
+    );
+}; 
+
+const Login:  React.FC<{ className?: string;}> = ({ className }) => {
+
+    return (
+        <div className={className}>
+            <button>
+                Login
+            </button>
+        </div>
+    );
+}; 
+
+export { InsertTransactionButton, EditTransactionScreen, DeleteTransaction, FilterIcon, FilterRegisters, Login};
 
