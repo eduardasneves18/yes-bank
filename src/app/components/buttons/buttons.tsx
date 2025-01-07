@@ -1,10 +1,11 @@
 import "./buttons.css";
 import React, { MouseEventHandler, useEffect, useState } from 'react';
 import { updateTransactionsAPI, deleteTransactionsAPI } from '@/app/services/transaction';
-import { LookupField, NumberField, TextField } from "../fields/fields";
+// import { LookupField, NumberField, TextField } from "../fields/fields";
+import { LookupField, NumberField, TextField } from "yes-bank-components" ;
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 import { faTrash, faPen, faFileAlt, faFilter } from '@fortawesome/free-solid-svg-icons';
-import { AttachmentModal } from "../modal/modal";
 
 type Transaction = {
     id: number;
@@ -77,8 +78,8 @@ const EditTransactionScreen: React.FC<EditTransactionProps> = ({ className, tran
                             <TextField 
                                 id="destinatario"
                                 className="text-field"
-                                labelDescription="Destinatário"
-                                placeholderText="Insira o nome do destinatário"
+                                label="Destinatário"
+                                placeholder="Insira o nome do destinatário"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)} 
                             />
@@ -87,17 +88,17 @@ const EditTransactionScreen: React.FC<EditTransactionProps> = ({ className, tran
                             <NumberField 
                                 id="valor"
                                 className="number-field"
-                                labelDescription="Valor"
-                                placeholderText="00,00"
+                                label="Valor"
+                                placeholder="00,00"
                                 value={amount}
                                 onChange={(e) => setAmount(Number(e.target.value))}
                             />
                             <LookupField 
                                 id="tipo-transacao"
                                 className="lookup-field"
-                                labelDescription="Tipo de transação"
+                                label="Tipo de transação"
                                 options={["PIX", "TED"]}
-                                placeholderText="Selecione o tipo de transação"
+                                placeholder="Selecione o tipo de transação"
                                 value={type}
                                 onChange={(e) => setType(e.target.value)} 
                             />
@@ -114,7 +115,6 @@ const EditTransactionScreen: React.FC<EditTransactionProps> = ({ className, tran
     );
 };
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
 
 const DeleteTransaction: React.FC<{ className?: string; transaction: Transaction; onDelete: () => void; }> = ({ className, transaction, onDelete }) => {
     const handleDelete = async () => {

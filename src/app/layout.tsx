@@ -1,7 +1,7 @@
 'use client'
 import { Provider } from 'react-redux';
 import Dashboard from './components/dashboard/dashboard';
-import Header from './components/header/header';
+import { Header } from 'yes-bank-components';
 import "./globals.css";
 import React from 'react';
 import store from './store/store';
@@ -15,7 +15,7 @@ export default function RootLayout(props: RootLayoutProps) {
     <html lang="en">
       <body className='main-layout'>
         <Provider store={store}>
-        <Header user="N" />
+        <Header user="N" type="S"/>
           <Dashboard>
             {props.children}
           </Dashboard>

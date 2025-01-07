@@ -1,5 +1,6 @@
 import Container from "@/app/components/containers/containers";
 import '@/app/home/home.css';
+import 'yes-bank-components/dist/styles.css';
 
 
 export default function HomePage() {

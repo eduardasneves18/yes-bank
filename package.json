@@ -24,7 +24,8 @@
     "react-redux": "^9.2.0",
     "redux": "^5.0.1",
     "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "yes-bank-components": "^1.0.19"
   },
   "devDependencies": {
     "@types/node": "^20",

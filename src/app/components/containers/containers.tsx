@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import Menu from "../menu/menu";
 import "./containers.css";
-import { LookupField, TextField, NumberField, DateField, AttachmentField, PasswordField, EmailField } from "@/app/components/fields/fields";
+// import { LookupField, TextField, NumberField, DateField, AttachmentField, PasswordField, EmailField } from "@/app/components/fields/fields";
 import { InsertTransactionButton, EditTransactionScreen, DeleteTransaction, FilterIcon, Login } from "../buttons/buttons";
 import { createTransactionAPI, getTransactionsAPI, deleteTransactionsAPI } from '@/app/services/transaction';
 import { Modal } from "../modal/modal";
+import { LookupField, TextField, NumberField, DateField, PasswordField, AttachmentField, EmailField } from "yes-bank-components" ;
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -139,17 +140,17 @@ function ContainerType(typeBox: string, className: string) {
                         <div className="fields-gap">
                             <AttachmentField 
                                 id={"anexo"} 
-                                labelDescription={"Anexar comprovante"}
+                                label={"Anexar comprovante"}
                                 className="text-field"
-                                placeholderText="Insira o nome do destinatário"
+                                placeholder="Insira o nome do destinatário"
                                 value={description}
                                 onChange={onChangeFile}/>
                             
                             <TextField
                                 id="destinatario"
                                 className="text-field"
-                                labelDescription="Nome da transação"
-                                placeholderText="Insira o nome do destinatário"
+                                label="Nome da transação"
+                                placeholder="Insira o nome do destinatário"
                                 value={description}
                                 onChange={onChangeDescription}
                             />
@@ -158,34 +159,34 @@ function ContainerType(typeBox: string, className: string) {
                                     {/* <LookupField
                                         id="tipo-transacao"
                                         className="lookup-field"
-                                        labelDescription="Tipo de transação"
+                                        label="Tipo de transação"
                                         options={["Entrada", "Saída"]}
-                                        placeholderText="Selecione o tipo de transação"
+                                        placeholder="Selecione o tipo de transação"
                                         value={type}
                                         onChange={onChangeTransactionType}
                                     /> */}
                                     <LookupField
                                         id="tipo-transacao"
                                         className="lookup-field"
-                                        labelDescription="Tipo de transação"
+                                        label="Tipo de transação"
                                         options={["PIX", "TED"]}
-                                        placeholderText="Selecione o tipo de transação"
+                                        placeholder="Selecione o tipo de transação"
                                         value={type}
                                         onChange={onChangeTransactionType}
                                     />
                                     <DateField 
                                         id={"data-transacao"} 
-                                        labelDescription={"Data da transação"}
+                                        label={"Data da transação"}
                                         className="number-field"
-                                        placeholderText="00,00"
+                                        placeholder="00,00"
                                         value={amount}
                                         onChange={onChangeDate}
                                     />
                                     <NumberField
                                         id="valor"
                                         className="number-field"
-                                        labelDescription="Valor"
-                                        placeholderText="00,00"
+                                        label="Valor"
+                                        placeholder="00,00"
                                         value={amount}
                                         onChange={onChangeValue}
                                     />
@@ -315,8 +316,8 @@ function ContainerType(typeBox: string, className: string) {
             return (
                 <div className= {className}>
                     <form>
-                        <TextField id={"nm-usuario"} labelDescription={"Nome de usuário"}></TextField>
-                        <PasswordField id={"pswd-usuario"} labelDescription={"Nome de usuário"}></PasswordField>
+                        <TextField id={"nm-usuario"} label={"Nome de usuário"}></TextField>
+                        <PasswordField id={"pswd-usuario"} label={"Nome de usuário"}></PasswordField>
                         <Login className="login"></Login>
                     </form>
                 </div>
@@ -325,9 +326,9 @@ function ContainerType(typeBox: string, className: string) {
                 return (
                     <div className="login">
                         <form>
-                            <TextField id={"nm-usuario"} labelDescription={"Nome de usuário"}></TextField>
-                            <PasswordField id={"pswd-usuario"} labelDescription={"Nome de usuário"}></PasswordField>
-                            <EmailField id={"email-usuario"} labelDescription={"Nome de usuário"}></EmailField>
+                            <TextField id={"nm-usuario"} label={"Nome de usuário"}></TextField>
+                            <PasswordField id={"pswd-usuario"} label={"Nome de usuário"}></PasswordField>
+                            <EmailField id={"email-usuario"} label={"Nome de usuário"}></EmailField>
                             <Login className="login"></Login>
                         </form>
                     </div>

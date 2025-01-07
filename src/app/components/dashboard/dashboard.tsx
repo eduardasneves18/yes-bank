@@ -1,5 +1,4 @@
 import "./dashboard.css";
-import Header from '@/app/components/header/header';
 
 interface DashboardProps{
     children?: React.ReactNode;
